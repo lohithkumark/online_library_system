@@ -4,19 +4,17 @@ function NotFound() {
   const location = useLocation();
 
   return (
-    <div style={{
-      height: "100vh",
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      alignItems: "center"
-    }}>
-      <h1>404 - Page Not Found ❌</h1>
-      <p>Invalid URL: {location.pathname}</p>
+    <div className="container" style={{ textAlign: "center" }}>
+      <div className="card">
+        <h1>404 - Page Not Found ❌</h1>
+        <p>Invalid URL: {location.pathname}</p>
 
-      <Link to="/" style={{ marginTop: "20px" }}>
-        Go Back Home
-      </Link>
+        <Link to="/">
+          <button style={{ marginTop: "20px" }}>
+            Go Back Home
+          </button>
+        </Link>
+      </div>
     </div>
   );
 }
