@@ -1,23 +1,22 @@
-import "./Home.css";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function Home() {
+  const books = useSelector((state) => state.books);
+
   const categories = ["Fiction", "Non-Fiction", "Sci-Fi", "Biography"];
 
-  const popularBooks = [
-    { id: 1, title: "The Alchemist", author: "Paulo Coelho" },
-    { id: 2, title: "1984", author: "George Orwell" },
-    { id: 3, title: "Atomic Habits", author: "James Clear" }
-  ];
+  // Show first 6 books as popular
+  const popularBooks = books.slice(0, 6);
 
   return (
-    <div className="home-container">
-      <h1>Welcome to Online Library 📚</h1>
-      <p>Discover books across different categories</p>
+    <>
+      {/* HERO SECTION */}
+      <div className="hero">
+        <h1>Welcome to Online Library 📚</h1>
+        <p>Discover books across different categories</p>
 
-      {/* Categories Section */}
-      <div className="categories">
-        <h2>Book Categories</h2>
+        {/* CATEGORY CHIPS */}
         <div className="category-list">
           {categories.map((category, index) => (
             <Link
@@ -31,20 +30,25 @@ function Home() {
         </div>
       </div>
 
-      {/* Popular Books Section */}
-      <div className="popular-section">
-        <h2>Popular Books</h2>
-        <div className="book-grid">
-          {popularBooks.map((book) => (
-            <div key={book.id} className="book-card">
-              <h4>{book.title}</h4>
-              <p>{book.author}</p>
-              <Link to={`/book/${book.id}`}>View Details</Link>
-            </div>
-          ))}
-        </div>
+      {/* POPULAR BOOKS */}
+      <h2 className="section-title">Popular Books</h2>
+
+      <div className="grid">
+        {popularBooks.map((book) => (
+          <div key={book.id} className="card">
+            <h3>{book.title}</h3>
+            <p>{book.author}</p>
+            <p style={{ opacity: 0.8 }}>
+              ⭐ {book.rating}
+            </p>
+
+            <Link to={`/book/${book.id}`}>
+              <button>View Details</button>
+            </Link>
+          </div>
+        ))}
       </div>
-    </div>
+    </>
   );
 }
 

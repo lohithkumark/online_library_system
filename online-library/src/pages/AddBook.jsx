@@ -38,69 +38,56 @@ function AddBook() {
       return;
     }
 
-    const newBook = {
+    dispatch(addBook({
       id: Date.now(),
       ...formData,
       rating: Number(formData.rating)
-    };
-
-    dispatch(addBook(newBook));
+    }));
 
     navigate("/books");
   };
 
   return (
-    <div className="container">
-      <h2>Add New Book</h2>
+    <div className="form-wrapper">
+      <div className="form-card">
+        <h2>Add New Book</h2>
 
-      {error && <p style={{ color: "red" }}>{error}</p>}
+        {error && <p className="error">{error}</p>}
 
-      <form
-        onSubmit={handleSubmit}
-        style={{ maxWidth: "450px" }}
-      >
-        <input
-          type="text"
-          name="title"
-          placeholder="Book Title"
-          onChange={handleChange}
-        />
+        <form onSubmit={handleSubmit}>
+          <div className="input-group">
+            <input type="text" name="title" required onChange={handleChange}/>
+            <label>Book Title</label>
+          </div>
 
-        <input
-          type="text"
-          name="author"
-          placeholder="Author Name"
-          onChange={handleChange}
-        />
+          <div className="input-group">
+            <input type="text" name="author" required onChange={handleChange}/>
+            <label>Author Name</label>
+          </div>
 
-        <input
-          type="text"
-          name="category"
-          placeholder="Category (Fiction, Sci-Fi...)"
-          onChange={handleChange}
-        />
+          <div className="input-group">
+            <select name="category" required onChange={handleChange}>
+              <option value="">Select Category</option>
+              <option>Fiction</option>
+              <option>Non-Fiction</option>
+              <option>Sci-Fi</option>
+              <option>Biography</option>
+            </select>
+          </div>
 
-        <textarea
-          name="description"
-          placeholder="Book Description"
-          rows="4"
-          onChange={handleChange}
-        />
+          <div className="input-group">
+            <textarea name="description" required onChange={handleChange}/>
+            <label>Description</label>
+          </div>
 
-        <input
-          type="number"
-          name="rating"
-          placeholder="Rating (1 - 5)"
-          min="1"
-          max="5"
-          step="0.1"
-          onChange={handleChange}
-        />
+          <div className="input-group">
+            <input type="number" name="rating" min="1" max="5" step="0.1" required onChange={handleChange}/>
+            <label>Rating (1 - 5)</label>
+          </div>
 
-        <button type="submit">
-          Add Book
-        </button>
-      </form>
+          <button type="submit">Add Book</button>
+        </form>
+      </div>
     </div>
   );
 }
