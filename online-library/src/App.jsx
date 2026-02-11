@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import Navbar from "./Navbar";
 
 function Home() {
   return <h2>Home Page</h2>;
@@ -18,12 +19,15 @@ function NotFound() {
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/books" element={<BrowseBooks />} />
-      <Route path="/add-book" element={<AddBook />} />
-      <Route path="*" element={<NotFound />} />
-    </Routes>
+    <>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/books" element={<BrowseBooks />} />
+        <Route path="/add-book" element={<AddBook />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </>
   );
 }
 
