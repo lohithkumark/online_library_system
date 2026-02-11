@@ -46,14 +46,15 @@ body {
   text-align: center;
   padding: 100px 20px 60px;
 }
-
 .hero h1 {
   font-size: 3rem;
   font-weight: 700;
   background: linear-gradient(90deg, #00f5ff, #ff00c8);
+  background-clip: text;
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: transparent;
 }
+
 
 .hero p {
   margin-top: 20px;

@@ -7,10 +7,10 @@ function BrowseBooks() {
   const books = useSelector((state) => state.books);
 
   const [searchTerm, setSearchTerm] = useState("");
-  const [sortOption, setSortOption] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [sortOption, setSortOption] = useState("");
 
-  // Sync dropdown category with URL param
+  // Sync dropdown category with URL
   useEffect(() => {
     if (category) {
       setSelectedCategory(category);
@@ -19,7 +19,7 @@ function BrowseBooks() {
     }
   }, [category]);
 
-  // Filter by category
+  // FILTERING
   let filteredBooks = selectedCategory
     ? books.filter(
         (book) =>
@@ -28,14 +28,14 @@ function BrowseBooks() {
       )
     : books;
 
-  // Search filter
+  // SEARCH
   filteredBooks = filteredBooks.filter(
     (book) =>
       book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       book.author.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // Sorting
+  // SORTING
   if (sortOption === "rating-high") {
     filteredBooks = [...filteredBooks].sort(
       (a, b) => b.rating - a.rating
@@ -54,14 +54,14 @@ function BrowseBooks() {
     <div className="container">
       <h2>Browse Books</h2>
 
-      {/* PREMIUM CONTROLS */}
+      {/* CONTROLS */}
       <div className="controls-premium">
-        {/* Search */}
-        <div className="search-box">
-          <span>🔍</span>
+        {/* SEARCH */}
+        <div className="search-container">
+          <span className="search-icon">🔍</span>
           <input
             type="text"
-            placeholder="Search books..."
+            placeholder="Search books by title or author..."
             value={searchTerm}
             onChange={(e) =>
               setSearchTerm(e.target.value)
@@ -69,7 +69,7 @@ function BrowseBooks() {
           />
         </div>
 
-        {/* Category Filter */}
+        {/* CATEGORY FILTER */}
         <select
           value={selectedCategory}
           onChange={(e) =>
@@ -87,7 +87,7 @@ function BrowseBooks() {
           </option>
         </select>
 
-        {/* Sort */}
+        {/* SORT */}
         <select
           value={sortOption}
           onChange={(e) =>
