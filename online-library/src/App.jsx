@@ -1,21 +1,9 @@
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./Navbar";
-
-function Home() {
-  return <h2>Home Page</h2>;
-}
-
-function BrowseBooks() {
-  return <h2>Browse Books</h2>;
-}
-
-function AddBook() {
-  return <h2>Add Book</h2>;
-}
-
-function NotFound() {
-  return <h2>404 Page Not Found</h2>;
-}
+import Home from "./pages/Home";
+import BrowseBooks from "./pages/BrowseBooks";
+import AddBook from "./pages/AddBook";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
