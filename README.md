@@ -108,9 +108,11 @@ CSS (Custom styling)
 ----------------------------------------------------------------------------------------------------------
 
 📂 Project Structure
+
 online-library/
 │
 ├── public/
+│
 ├── src/
 │   ├── data/
 │   │   └── books.js
@@ -135,3 +137,4 @@ online-library/
 ├── package.json
 ├── vite.config.js
 └── README.md
+
