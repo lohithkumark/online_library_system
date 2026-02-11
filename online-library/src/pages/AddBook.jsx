@@ -27,7 +27,6 @@ function AddBook() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Validation
     if (
       !formData.title ||
       !formData.author ||
@@ -51,55 +50,56 @@ function AddBook() {
   };
 
   return (
-    <div style={{ padding: "40px" }}>
+    <div className="container">
       <h2>Add New Book</h2>
 
       {error && <p style={{ color: "red" }}>{error}</p>}
 
-      <form onSubmit={handleSubmit} style={{ maxWidth: "400px" }}>
+      <form
+        onSubmit={handleSubmit}
+        style={{ maxWidth: "450px" }}
+      >
         <input
           type="text"
           name="title"
-          placeholder="Title"
+          placeholder="Book Title"
           onChange={handleChange}
-          style={{ width: "100%", marginBottom: "10px", padding: "8px" }}
         />
 
         <input
           type="text"
           name="author"
-          placeholder="Author"
+          placeholder="Author Name"
           onChange={handleChange}
-          style={{ width: "100%", marginBottom: "10px", padding: "8px" }}
         />
 
         <input
           type="text"
           name="category"
-          placeholder="Category"
+          placeholder="Category (Fiction, Sci-Fi...)"
           onChange={handleChange}
-          style={{ width: "100%", marginBottom: "10px", padding: "8px" }}
         />
 
         <textarea
           name="description"
-          placeholder="Description"
+          placeholder="Book Description"
+          rows="4"
           onChange={handleChange}
-          style={{ width: "100%", marginBottom: "10px", padding: "8px" }}
         />
 
         <input
           type="number"
           name="rating"
-          placeholder="Rating"
+          placeholder="Rating (1 - 5)"
           min="1"
           max="5"
           step="0.1"
           onChange={handleChange}
-          style={{ width: "100%", marginBottom: "10px", padding: "8px" }}
         />
 
-        <button type="submit">Add Book</button>
+        <button type="submit">
+          Add Book
+        </button>
       </form>
     </div>
   );

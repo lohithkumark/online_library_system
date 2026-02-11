@@ -3,16 +3,11 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 
 function BrowseBooks() {
-  // Get category from URL
   const { category } = useParams();
-
-  // Get books from Redux store
   const books = useSelector((state) => state.books);
-
-  // Local state for search
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Filter by category (if exists)
+  // Filter by category
   let filteredBooks = category
     ? books.filter(
         (book) =>
@@ -20,7 +15,7 @@ function BrowseBooks() {
       )
     : books;
 
-  // Filter by search (title or author)
+  // Filter by search
   filteredBooks = filteredBooks.filter(
     (book) =>
       book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -28,44 +23,35 @@ function BrowseBooks() {
   );
 
   return (
-    <div style={{ padding: "40px" }}>
+    <div className="container">
       <h2>
         Browse Books {category && ` - ${category}`}
       </h2>
 
-      {/* Search Bar */}
+      {/* Search */}
       <input
+        className="search"
         type="text"
         placeholder="Search by title or author..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        style={{
-          padding: "10px",
-          width: "300px",
-          margin: "20px 0"
-        }}
       />
 
-      {/* Books List */}
-      <div style={{ display: "grid", gap: "20px" }}>
+      {/* Books Grid */}
+      <div className="grid">
         {filteredBooks.length === 0 ? (
           <p>No books found.</p>
         ) : (
           filteredBooks.map((book) => (
-            <div
-              key={book.id}
-              style={{
-                padding: "20px",
-                background: "#1e3c72",
-                borderRadius: "10px"
-              }}
-            >
+            <div key={book.id} className="card">
               <h3>{book.title}</h3>
               <p><strong>Author:</strong> {book.author}</p>
               <p><strong>Category:</strong> {book.category}</p>
 
               <Link to={`/book/${book.id}`}>
-                View Details
+                <button style={{ marginTop: "10px" }}>
+                  View Details
+                </button>
               </Link>
             </div>
           ))
