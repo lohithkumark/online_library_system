@@ -168,7 +168,6 @@ const books = [
   }
 ];
 
-// Generate additional realistic entries up to 50
 const extraTitles = [
   "The Silent Patient",
   "Educated",
